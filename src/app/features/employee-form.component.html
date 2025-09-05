@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <h5 class="modal-title m-0">{{ title || (employee ? 'Edit Employee' : 'Add Employee') }}</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="save()" class="modal-body">
+    <div class="row g-3">
+
+        <!-- Read-only Employee ID on Edit -->
+        <div class="col-12" *ngIf="employee">
+            <label class="form-label">Employee ID</label>
+            <input class="form-control" [value]="employee .id" disabled />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">First Name <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="firstName" placeholder="e.g. Alex" autofocus
+                [class.is-invalid]="invalid('firstName')" />
+            <div class="invalid-feedback">First name is required</div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Last Name <span class="text-danger">*</span></label>
+            <input class="form-control" formControlName="lastName" placeholder="e.g. Johnson"
+                [class.is-invalid]="invalid('lastName')" />
+            <div class="invalid-feedback">Last name is required</div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Email <span class="text-danger">*</span></label>
+            <div class="input-group ig w-100">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                <input type="email" class="form-control" formControlName="email" placeholder="name@company.com"
+                    [class.is-invalid]="invalid('email')" />
+                <div class="invalid-feedback">Enter a valid email</div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Contact</label>
+            <div class="input-group ig w-100">
+                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                <input type="tel" class="form-control" formControlName="contactNumber" placeholder="98765 43210" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" formControlName="age" min="18" max="80" placeholder="30" />
+            <div class="form-text">18–80</div>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Profession</label>
+            <input class="form-control" formControlName="profession" placeholder="Software Engineer" />
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Salary</label>
+            <div class="input-group ig w-100">
+                <span class="input-group-text">₹</span>
+                <input type="number" class="form-control" formControlName="salary" min="0" placeholder="500000" />
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <label class="form-label">Avatar URL</label>
+            <div class="input-group ig w-100">
+                <span class="input-group-text"><i class="bi bi-image"></i></span>
+                <input class="form-control" formControlName="imageUrl" placeholder="https://…" />
+            </div>
+            <div class="form-text">Leave blank to use a default avatar.</div>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <img [src]="form.get('imageUrl')?.value || employee?.imageUrl || defaultAvatar"
+                class="rounded-circle border avatar-preview ms-auto" alt="Preview" />
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+    </div>
+</form>

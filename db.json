@@ -1,0 +1,59 @@
+{
+  "medicalDetails": [
+    {
+      "id": "1",
+      "employeeId": 1001,
+      "policyName": "Family Care",
+      "salary": 500000,
+      "claimedAmount": 5500,
+      "numberOfDependents": 3,
+      "month": "Jul"
+    },
+    {
+      "id": "2",
+      "employeeId": 1002,
+      "policyName": "Premium Shield",
+      "salary": 1200000,
+      "claimedAmount": 180000,
+      "numberOfDependents": 2,
+      "month": "Feb"
+    },
+    {
+      "id": "3",
+      "employeeId": 1003,
+      "policyName": "Health Guard",
+      "salary": 800000,
+      "claimedAmount": 0,
+      "numberOfDependents": 4,
+      "month": "Mar"
+    },
+    {
+      "id": "4",
+      "employeeId": 1126756,
+      "policyName": "HealthKart",
+      "salary": 250000,
+      "claimedAmount": 5000,
+      "numberOfDependents": 3,
+      "month": "Jan"
+    },
+    {
+      "id": "5",
+      "employeeId": 1053631,
+      "policyName": "tatacliq",
+      "salary": 500000,
+      "claimedAmount": 50042,
+      "numberOfDependents": 1,
+      "month": "Mar"
+    },
+    {
+      "id": "9de3",
+      "employeeId": 8958954,
+      "policyName": "hfc life insurancce",
+      "month": "Jan",
+      "salary": 5000,
+      "claimedAmount": 0,
+      "numberOfDependents": 3
+    }
+  ],
+  "claimAveragesByMonth": []
+}

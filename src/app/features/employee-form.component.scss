@@ -1,0 +1,23 @@
+  .ig.w-100 {
+      width: 100%;
+  }
+
+  /* ensure input-groups stretch */
+  .ig .input-group-text {
+      min-width: 42px;
+      justify-content: center;
+  }
+
+  .modal-body {
+      padding-top: .75rem;
+  }
+
+  .form-text {
+      margin-top: .25rem;
+  }
+
+  .avatar-preview {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+  }

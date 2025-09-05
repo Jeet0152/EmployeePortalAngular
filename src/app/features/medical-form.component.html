@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <h5 class="modal-title">{{ title || (detail ? 'Edit Medical' : 'Add Medical') }}</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="save()" class="modal-body">
+    <div class="row g-3">
+
+        <!-- Employee selector (live from EmployeeService) -->
+        <div class="col-md-4">
+            <label class="form-label">Employee</label>
+            <select class="form-select" formControlName="employeeId" [class.is-invalid]="invalid('employeeId')">
+                <option [ngValue]="null" disabled>Select employee…</option>
+
+                <!-- Current selection if that employee was deleted -->
+                <option *ngIf="removedOptionId !== null" [ngValue]="removedOptionId" disabled>
+                    Employee #{{ removedOptionId }} (removed)
+                </option>
+
+                <option *ngFor="let e of employees" [ngValue]="e.id">
+                    {{ e.id }} — {{ e.firstName }} {{ e.lastName }}
+                </option>
+            </select>
+            <div class="invalid-feedback">Employee is required</div>
+        </div>
+
+        <div class="col-md-5">
+            <label class="form-label">Policy Name</label>
+            <input class="form-control" formControlName="policyName" [class.is-invalid]="invalid('policyName')" />
+            <div class="invalid-feedback">Policy name is required</div>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Month</label>
+            <select class="form-select" formControlName="month">
+                <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Salary (₹)</label>
+            <div class="input-group ig">
+                <span class="input-group-text">₹</span>
+                <input type="number" class="form-control" formControlName="salary"
+                    [class.is-invalid]="invalid('salary')" />
+                <div class="invalid-feedback">Enter a valid salary</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Claimed Amount (₹)</label>
+            <div class="input-group ig">
+                <span class="input-group-text">₹</span>
+                <input type="number" class="form-control" formControlName="claimedAmount"
+                    [class.is-invalid]="invalid('claimedAmount')" />
+                <div class="invalid-feedback">Enter a valid amount</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Dependents</label>
+            <input type="number" class="form-control" formControlName="numberOfDependents"
+                [class.is-invalid]="invalid('numberOfDependents')" />
+            <div class="invalid-feedback">Enter dependents (0+)</div>
+        </div>
+    </div>
+
+    <div class="modal-footer mt-3">
+        <button type="button" class="btn btn-outline-secondary" (click)="close()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+    </div>
+</form>

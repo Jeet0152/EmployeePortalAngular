@@ -1,0 +1,29 @@
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 m-0">{{ 'settings.title' | translate }}</h2>
+</div>
+
+<div class="card shadow-sm rounded-4">
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+                <label class="form-label">{{ 'settings.theme' | translate }}</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch" [(ngModel)]="dark"
+                        (change)="applyTheme()">
+                    <label class="form-check-label" for="themeSwitch">
+                        {{ dark ? ('settings.dark' | translate) : ('settings.light' | translate) }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">{{ 'settings.language' | translate }}</label>
+                <select class="form-select" [(ngModel)]="lang" (change)="applyLang()">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

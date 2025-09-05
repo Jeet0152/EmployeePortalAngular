@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+/* Layer order (low → high):
+   table head (1020) < navbar (1030) < dropdown (1040) < modal (1055 default) */
+.table thead.sticky-top {
+    z-index: 1020;
+}
+
+nav.sticky-top {
+    z-index: 1030 !important;
+}
+
+nav.sticky-top .dropdown-menu {
+    z-index: 1040 !important;
+}

@@ -1,0 +1,10 @@
+th.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+th .sort-icon {
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+}

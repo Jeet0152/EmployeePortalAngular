@@ -1,0 +1,46 @@
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm rounded-4 border-0">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-shield-lock fs-1"></i>
+                        <h1 class="h4 mt-2 mb-0">Sign in</h1>
+                        <small class="text-muted">Demo: <code>hr@example.com</code> / <code>password123</code></small>
+                    </div>
+
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="mb-3">
+                            <label class="form-label">Email or Username</label>
+                            <input class="form-control" formControlName="id" placeholder="hr@example.com or hr"
+                                autofocus />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <div class="input-group">
+                                <input [type]="show ? 'text' : 'password'" class="form-control" formControlName="pw"
+                                    placeholder="••••••••" />
+                                <button type="button" class="btn btn-outline-secondary" (click)="show = !show"
+                                    aria-label="Toggle password">
+                                    <i class="bi" [class.bi-eye]="!show" [class.bi-eye-slash]="show"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+
+                        <button class="btn btn-primary w-100" type="submit" [disabled]="form.invalid">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Sign in
+                        </button>
+
+                        <div class="text-center mt-3">
+                            <a routerLink="/" class="small text-decoration-none"><i class="bi bi-arrow-left"></i> Back
+                                to home</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

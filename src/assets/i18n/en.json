@@ -1,0 +1,54 @@
+{
+  "app": { "title": "Employee Portal" },
+  "nav": {
+    "employees": "Employees",
+    "medical": "Medical",
+    "charts": "Charts",
+    "settings": "Settings"
+  },
+  "settings": {
+    "title": "Quick Settings",
+    "language": "Language",
+    "light": "Light theme",
+    "dark": "Dark theme",
+    "notifications": "Notifications"
+
+  },
+
+  "employees": {
+    "title": "Employees",
+    "add": "Add Employee",
+    "refresh": "Refresh",
+    "cols": {
+      "sno": "S.No",
+      "id": "Employee ID",
+      "avatar": "Avatar",
+      "name": "Name",
+      "age": "Age",
+      "contact": "Contact",
+      "email": "Email",
+      "actions": "Actions"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "rowsPerPage": "Rows per page",
+    "showing": "Showing {{from}}–{{to}} of {{total}}"
+  },
+
+  "medical": {
+    "title": "Medical Details",
+    "add": "Add",
+    "totalDependents": "Total Dependents: {{n}}",
+    "cols": {
+      "empId": "Employee ID",
+      "policy": "Policy",
+      "month": "Month",
+      "salary": "Salary",
+      "claimed": "Claimed",
+      "max": "Policy Max",
+      "balance": "Balance Left",
+      "deps": "Dependents",
+      "actions": "Actions"
+    }
+  }
+}

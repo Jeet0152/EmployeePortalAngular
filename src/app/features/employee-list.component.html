@@ -1,0 +1,93 @@
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 m-0">{{ 'employees.title' | translate }}</h2>
+    <div class="d-flex gap-2">
+        <button class="btn btn-primary" (click)="openAdd()">
+            <i class="bi bi-plus-lg me-1"></i>{{ 'employees.add' | translate }}
+        </button>
+        <button class="btn btn-outline-secondary" (click)="refresh()">
+            <i class="bi bi-arrow-clockwise me-1"></i>{{ 'employees.refresh' | translate }}
+        </button>
+    </div>
+</div>
+
+<div *ngIf="svc.loading" class="alert alert-info py-2">Loading…</div>
+<div *ngIf="svc.error" class="alert alert-danger py-2">{{ svc.error }}</div>
+
+<div class="table-responsive border rounded-3">
+    <table class="table align-middle table-hover m-0">
+        <thead class="table-light sticky-top" style="top:0">
+            <tr>
+                <th style="width:72px">{{ 'employees.cols.sno' | translate }}</th>
+
+                <th class="sortable" (click)="sortBy('id')" [attr.aria-sort]="ariaSort('id')">
+                    {{ 'employees.cols.id' | translate }}
+                    <i class="bi sort-icon" [ngClass]="iconFor('id')"></i>
+                </th>
+
+                <th>{{ 'employees.cols.avatar' | translate }}</th>
+
+                <th class="sortable" (click)="sortBy('firstName')" [attr.aria-sort]="ariaSort('firstName')">
+                    {{ 'employees.cols.name' | translate }}
+                    <i class="bi sort-icon" [ngClass]="iconFor('firstName')"></i>
+                </th>
+
+                <th class="sortable" (click)="sortBy('age')" [attr.aria-sort]="ariaSort('age')">
+                    {{ 'employees.cols.age' | translate }}
+                    <i class="bi sort-icon" [ngClass]="iconFor('age')"></i>
+                </th>
+
+                <th class="sortable" (click)="sortBy('contactNumber')" [attr.aria-sort]="ariaSort('contactNumber')">
+                    {{ 'employees.cols.contact' | translate }}
+                    <i class="bi sort-icon" [ngClass]="iconFor('contactNumber')"></i>
+                </th>
+
+                <th>{{ 'employees.cols.email' | translate }}</th>
+                <th class="text-end">{{ 'employees.cols.actions' | translate }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let e of paged; let i = index">
+                <td>{{ startIndex + i + 1 }}</td>
+                <td>{{ e.id }}</td>
+                <td>
+                    <img [src]="e.imageUrl || 'https://placehold.co/40x40'" class="rounded-circle" width="40"
+                        height="40" />
+                </td>
+                <td>{{ e.firstName }} {{ e.lastName }}</td>
+                <td>{{ e.age ?? '—' }}</td>
+                <td>{{ e.contactNumber ?? '—' }}</td>
+                <td><a [href]="'mailto:'+e.email">{{ e.email }}</a></td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-outline-secondary me-2" (click)="openEdit(e)" title="Edit">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="confirmDelete(e)" title="Delete">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination bar -->
+<div class="d-flex flex-wrap align-items-center justify-content-between mt-3 gap-3">
+    <div class="d-flex align-items-center gap-2">
+        <label class="form-label m-0">Rows per page</label>
+        <select class="form-select form-select-sm" [(ngModel)]="pageSize" (change)="onPageSizeChange()"
+            style="width: 90px">
+            <option *ngFor="let s of pageSizeOptions" [ngValue]="s">{{ s }}</option>
+        </select>
+        <span class="text-muted small">
+            {{ 'employees.showing' | translate:{ from: (totalItems ? (startIndex+1) : 0), to: endIndex, total:
+            totalItems } }}
+        </span>
+    </div>
+
+    <pagination class="mb-0" [totalItems]="totalItems" [(ngModel)]="page" [itemsPerPage]="pageSize" [maxSize]="5"
+        [boundaryLinks]="true" [rotate]="false" previousText="‹" nextText="›" firstText="«" lastText="»"
+        (pageChanged)="paginate()">
+    </pagination>
+</div>

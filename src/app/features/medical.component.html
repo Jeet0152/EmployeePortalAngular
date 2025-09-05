@@ -1,0 +1,90 @@
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 m-0">{{ 'medical.title' | translate }}</h2>
+
+    <!-- Controls: Month filter + Add -->
+    <div class="d-flex flex-wrap align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <label class="form-label m-0">Month</label>
+            <select class="form-select form-select-sm" style="min-width: 120px" [value]="selectedMonth"
+                (change)="onMonthChange($event)">
+                <option value="All">All</option>
+                <option *ngFor="let m of months" [value]="m">{{ m }}</option>
+            </select>
+            <button class="btn btn-sm btn-outline-secondary" (click)="clearFilter()"
+                [disabled]="selectedMonth === 'All'">
+                Clear
+            </button>
+        </div>
+
+        <span class="badge text-bg-secondary">
+            {{ 'medical.totalDependents' | translate : { n: totalDependents } }}
+        </span>
+        <span class="badge text-bg-info">
+            Total Claimed ({{ selectedMonth === 'All' ? 'All' : selectedMonth }}):
+            {{ totalClaimed | currency : 'INR' : 'symbol-narrow' }}
+        </span>
+        <span class="badge text-bg-light border">
+            Avg Claimed: {{ avgClaim | currency : 'INR' : 'symbol-narrow' }}
+        </span>
+
+        <button class="btn btn-primary" (click)="openAdd()">
+            <i class="bi bi-plus-lg me-1"></i>{{ 'medical.add' | translate }}
+        </button>
+    </div>
+</div>
+
+<div *ngIf="loading" class="alert alert-info py-2">Loading…</div>
+<div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+
+<div class="table-responsive border rounded-3">
+    <table class="table align-middle table-hover m-0">
+        <thead class="table-light sticky-top" style="top:0">
+            <tr>
+                <th>#</th>
+                <th>{{ 'medical.cols.empId' | translate }}</th>
+                <th>{{ 'medical.cols.policy' | translate }}</th>
+                <th>{{ 'medical.cols.month' | translate }}</th>
+                <th class="text-end">{{ 'medical.cols.salary' | translate }}</th>
+                <th class="text-end">{{ 'medical.cols.claimed' | translate }}</th>
+                <th class="text-end">{{ 'medical.cols.max' | translate }}</th>
+                <th class="text-end">{{ 'medical.cols.balance' | translate }}</th>
+                <th class="text-end">{{ 'medical.cols.deps' | translate }}</th>
+                <th class="text-end">{{ 'medical.cols.actions' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of filtered; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ d.employeeId }}</td>
+                <td>{{ d.policyName }}</td>
+                <td>{{ d.month || '—' }}</td>
+                <td class="text-end">
+                    {{ d.salary | currency : 'INR' : 'symbol-narrow' }}
+                </td>
+                <td class="text-end">
+                    {{ d.claimedAmount | currency : 'INR' : 'symbol-narrow' }}
+                </td>
+                <td class="text-end">
+                    {{ policyMax(d.salary) | currency : 'INR' : 'symbol-narrow' }}
+                </td>
+                <td class="text-end">
+                    {{
+                    balance(policyMax(d.salary), d.claimedAmount)
+                    | currency : 'INR' : 'symbol-narrow'
+                    }}
+                </td>
+                <td class="text-end">
+                    <span class="badge text-bg-info">{{ d.numberOfDependents }}</span>
+                </td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-outline-secondary me-2" (click)="openEdit(d)">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="confirmDelete(d)">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
