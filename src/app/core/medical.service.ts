@@ -3,8 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export type Month =
-  | 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun'
-  | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec';
+  | 'Jan'
+  | 'Feb'
+  | 'Mar'
+  | 'Apr'
+  | 'May'
+  | 'Jun'
+  | 'Jul'
+  | 'Aug'
+  | 'Sep'
+  | 'Oct'
+  | 'Nov'
+  | 'Dec';
 
 export interface MedicalDetail {
   id: number;
@@ -28,12 +38,20 @@ export function balanceLeft(max: number, claimed: number): number {
 
 @Injectable({ providedIn: 'root' })
 export class MedicalService {
-  private readonly API = 'http://localhost:3000/medicalDetails';
+  private readonly API = '/api/medicalDetails';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  list(): Observable<MedicalDetail[]> { return this.http.get<MedicalDetail[]>(this.API); }
-  add(m: Omit<MedicalDetail, 'id'>): Observable<MedicalDetail> { return this.http.post<MedicalDetail>(this.API, m); }
-  update(m: MedicalDetail): Observable<MedicalDetail> { return this.http.put<MedicalDetail>(`${this.API}/${m.id}`, m); }
-  remove(id: number): Observable<void> { return this.http.delete<void>(`${this.API}/${id}`); }
+  list(): Observable<MedicalDetail[]> {
+    return this.http.get<MedicalDetail[]>(this.API);
+  }
+  add(m: Omit<MedicalDetail, 'id'>): Observable<MedicalDetail> {
+    return this.http.post<MedicalDetail>(this.API, m);
+  }
+  update(m: MedicalDetail): Observable<MedicalDetail> {
+    return this.http.put<MedicalDetail>(`${this.API}/${m.id}`, m);
+  }
+  remove(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API}/${id}`);
+  }
 }
