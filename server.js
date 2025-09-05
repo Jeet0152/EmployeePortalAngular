@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Serve Angular dist
-app.use(express.static(path.join(__dirname, "dist/employee-portal")));
+app.use(express.static(path.join(__dirname, "dist/employee-portal/browser")));
 
 // Setup json-server
 const router = jsonServer.router("db.json");
@@ -15,7 +15,7 @@ app.use("/api", middlewares, router);
 
 // Fallback to Angular index.html (SPA routing)
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/employee-portal/index.html"));
+  res.sendFile(path.join(__dirname, "dist/employee-portal/browser/index.html"));
 });
 
 app.listen(PORT, () => {
