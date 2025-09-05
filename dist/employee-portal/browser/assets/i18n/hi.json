@@ -1,0 +1,53 @@
+{
+  "app": { "title": "कर्मचारी पोर्टल" },
+  "nav": {
+    "employees": "कर्मचारी",
+    "medical": "चिकित्सा",
+    "charts": "चार्ट",
+    "settings": "सेटिंग्स"
+  },
+  "settings": {
+    "title": "त्वरित सेटिंग्स",
+    "language": "भाषा",
+    "light": "लाइट थीम",
+    "dark": "डार्क थीम",
+    "notifications": "सूचनाएँ"
+  },
+
+  "employees": {
+    "title": "कर्मचारी",
+    "add": "कर्मचारी जोड़ें",
+    "refresh": "रिफ्रेश",
+    "cols": {
+      "sno": "क्रम",
+      "id": "कर्मचारी आईडी",
+      "avatar": "अवतार",
+      "name": "नाम",
+      "age": "आयु",
+      "contact": "संपर्क",
+      "email": "ईमेल",
+      "actions": "क्रियाएँ"
+    },
+    "edit": "संपादित करें",
+    "delete": "हटाएँ",
+    "rowsPerPage": "प्रति पृष्ठ पंक्तियाँ",
+    "showing": "{{from}}–{{to}} कुल {{total}} में से"
+  },
+
+  "medical": {
+    "title": "चिकित्सा विवरण",
+    "add": "जोड़ें",
+    "totalDependents": "कुल आश्रित: {{n}}",
+    "cols": {
+      "empId": "कर्मचारी आईडी",
+      "policy": "पॉलिसी",
+      "month": "माह",
+      "salary": "वेतन",
+      "claimed": "दावा",
+      "max": "अधिकतम पॉलिसी",
+      "balance": "शेष",
+      "deps": "आश्रित",
+      "actions": "क्रियाएँ"
+    }
+  }
+}
