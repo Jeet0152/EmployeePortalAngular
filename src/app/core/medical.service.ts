@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../enviroments/environment';
 
 export type Month =
   | 'Jan'
@@ -38,7 +39,7 @@ export function balanceLeft(max: number, claimed: number): number {
 
 @Injectable({ providedIn: 'root' })
 export class MedicalService {
-  private readonly API = '/api/medicalDetails';
+  private readonly API = `${environment.apiUrl}/medicalDetails`; 
 
   constructor(private http: HttpClient) {}
 
